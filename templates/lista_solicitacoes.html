@@ -1,0 +1,25 @@
+{% extends "base_admin.html" %}
+    {% block title %}Adicionar Produtos{% endblock %}
+    {% block head %}Adicionar Produtos{% endblock %}
+    {% block content %}
+		<p>Solicitações cadastrados</p>
+		<table>
+			<tr>
+				<th>Nome</th>
+				<th>Produto</th>
+				<th>Estoque</th>
+				<th>Quantidade</th>
+			</tr>	
+			{% for solicitacao in solicitacoes %}
+			
+				<tr>
+					<td><a href="/admin/solicitacao?id={{ solicitacao.key }}">{{ solicitacao.nome }}</td>
+					<td>{{ solicitacao.produto.nome }}</td>
+					<td>{{ solicitacao.estoque.nome }}</td>
+					<td>{{ solicitacao.quantidade }}</td>
+				</tr>
+
+			{% endfor %}
+		</table>
+			
+{% endblock %}

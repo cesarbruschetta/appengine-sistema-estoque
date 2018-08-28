@@ -1,0 +1,27 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
+      lang="en">
+	<head>
+    	<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+		<title>Sistema de Estoque (Administração) | {% block title %}{% endblock %}</title>
+		
+		<script type="text/javascript" src="/static/tema/js/jquery-1.6.2.js"></script>
+		{% block external %}{% endblock %}
+	</head>
+	<body>
+		<div id="menu">
+			<ul>
+				<li><a href="/admin"> Home</a></li>
+				<li><a href="/admin/add_produto">add produto</a></li>
+				<li><a href="/admin/add_estoque">add estoque</a></li>
+				<li><a href="/admin/add_quantidade">add Quantidade</a></li>
+				<li><a href="/admin/lista_solicitacoes">Lista das Solicitações</a></li>
+			</ul>
+		</div>
+		<div id="conteudo">
+			{% block content %}{% endblock %}
+			
+		</div>
+	</body>
+</html>

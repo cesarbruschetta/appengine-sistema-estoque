@@ -1,0 +1,48 @@
+#portal-column-content{padding:20px;}
+
+h1{
+	color:#F89820;
+	margin:5px;
+}
+a{color:#000;}
+
+input[type="button"],input[type="submit"]{
+    background: url("/site_media/tema/images/bkg/btn_saibamais_125.png") no-repeat scroll right center transparent;
+    border: medium none;
+    padding: 3px 11px 11px 10px;
+	cursor:pointer;
+	height:35px;
+	width:159px;
+	float:right;
+}
+input{
+	border:#000 solid 1px;
+	height:15px;
+	width:100%;
+}
+select{
+	border:#000 solid 1px;
+	width:100%;
+	background:#fff;
+}
+textarea{
+	border:#000 solid 1px;
+	width:100%;
+	background:#fff;
+}
+
+.tabela{
+	width:80%;
+	border:#ccc solid 2px;
+}
+.tabela .htabela{
+	background:#ccc;
+}
+
+.borda{
+	border-left:#ccc solid 2px;
+	border-right:#ccc solid 2px;
+}
+td{
+	padding:0 5px 0 5px;
+}

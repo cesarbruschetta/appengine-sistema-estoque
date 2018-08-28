@@ -1,0 +1,43 @@
+{% extends "base_admin.html" %}
+    {% block title %}Adicionar Produtos{% endblock %}
+    {% block head %}Adicionar Produtos{% endblock %}
+    {% block content %}
+		<p>Cadastrar nova Solicitacao</p>
+		<form action="/add_solicitacao" method="post">
+			<table>
+				<tr>
+					<td align="right">Nome:</td>
+					<td><input type='text' name='nome' size='64' /></td>
+				</tr>
+				<tr>
+				<td align="right">Produto:</td>
+					<td><select name="produto">
+							<option value="">-- Selecione--</option>
+							{% for produto in produtos %}
+								<option value="{{ produto.key }}">{{ produto.nome }}</option>
+							{% endfor %}
+						<select>
+				</tr>
+				<tr>
+					<td align="right">Estoque:</td>
+					<td><select name="estoque">
+							<option value="">-- Selecione--</option>
+							{% for estoque in estoques %}
+								<option value="{{ estoque.key }}">{{ estoque.nome }}</option>
+							{% endfor %}
+						<select>
+				</tr>
+				<tr>
+					<td align="right">Razão:</td>
+					<td><textarea name='razao' style="width: 633px; height: 193px;">
+						</textarea>
+					</td>
+				</tr>
+				<tr>
+					<td><input type="reset" value="Limpar"/></td>
+					<td><input type="submit" value="Adicionar Produto"/></td>
+				</tr>	
+			</table>
+		</form>
+			
+{% endblock %}

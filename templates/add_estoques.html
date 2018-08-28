@@ -1,0 +1,40 @@
+{% extends "base_admin.html" %}
+    {% block title %}Adicionar Estoques{% endblock %}
+    {% block head %}Adicionar Estoques{% endblock %}
+    {% block content %}
+		<p>Cadastrar novo estoque</p>
+		<form action="/admin/add_estoque" method="post">
+			<table>
+				<tr>
+					<td align="right">Codigo:</td>
+					<td><input type='text' name='codigo' size='64' /></td>
+				</tr>
+				<tr>
+					<td align="right">Nome:</td>
+					<td><input type='text' name='nome' size='64' /></td>
+				</tr>
+				<tr>
+					<td><input type="reset" value="Limpar"/></td>
+					<td><input type="submit" value="Adicionar Estoque"/></td>
+				</tr>	
+			</table>
+		</form>
+	
+		<p>Estoques ja cadastrados</p>
+		<table>
+			<tr>
+				<th>Codigo</th>
+				<th>Nome</th>
+			</tr>	
+			{% for estoque in estoques %}
+			
+				<tr>
+					<td>{{ estoque.codigo }}</td>
+					<td>{{ estoque.nome }}</td>
+				</tr>
+
+			{% endfor %}
+		</table>
+
+{% endblock %}
+
