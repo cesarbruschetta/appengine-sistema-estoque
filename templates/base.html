@@ -10,41 +10,28 @@
 		<script type="text/javascript" src="/static/tema/js/portal.js"></script>
 		
 		<link rel="stylesheet" href="/static/tema/css/library.css" type="text/css" charset="utf-8" />
-		<link rel="stylesheet" href="/static/tema/css/liberiun-deco.css" type="text/css" charset="utf-8" />
-		<link rel="stylesheet" href="/static/tema/css/liberiun-layout.css" type="text/css" charset="utf-8" />
+		<link rel="stylesheet" href="/static/tema/css/layout-deco.css" type="text/css" charset="utf-8" />
+		<link rel="stylesheet" href="/static/tema/css/layout.css" type="text/css" charset="utf-8" />
 		<link rel="stylesheet" href="/static/style.css" type="text/css" charset="utf-8" />
 		
 		{% block external %}{% endblock %}
 	</head>
 	<body>
 		<div class="row back-main">
-			<div class="row back-liberiun">
+			<div class="row back-layout">
 				<div id ="visual-portal-wrapper" class="width-950px margin-auto">
 					<!-- TOP -->	
 					<div id="portal-top" class="row">
 						<div id="portal-header">
 							<div class="cell width-1:3 position-0">
 								<a id="portal-logo-theme" class="inline-block" href="/">
-									<img src="/static/tema/images/liberiun_logo.png">
+									<img src="/static/tema/images/layout_logo.png">
 								</a>
 							</div>
 							<div class="cell width-2:3 position-16 align-right">
 								<div id="portal-login-theme" class="margin-top16px margin-right180px position-absolute right-0">
 									<dl id="portal-personaltools-theme"></dl>
 								</div>
-								<!--div id="portal-searchbox" class="portal-searchbox-theme float-right margin-top10px margin-right3px">
-									<form id="livesearch">
-										<div class="LSBox search-left padding-left10px height-36px">
-											<input id="searchGadget" class="search-middle height-36px display-block float-left searchField inputLabel inputLabelActive" type="text" title="Buscar no Site" value="Buscar no Site">
-											<input class="search-busca width-35px height-36px display-block float-left searchButton">
-										</div>
-										<--
-										<!--div class="searchSection">
-											<input id="searchbox_currentfolder_only" type="checkbox">
-											<label>apenas nesta se&ccedil;&atilde;o</label>
-										</div>
-									</form>
-								</div-->
 							</div>
 							</div>
 							<div class="cell width-full position-0 portal-globalnav-wrapper height-40px margin-top180px menu-back-right margin-right3px">
@@ -52,40 +39,24 @@
                                         <li class="menu-back-middle float-left display-block height-40px plain" id="home">
 											<a href="/" title="Home" alt="Home">Home</a>
 										</li>
-                                        {% if user.is_authenticated %}
-										<li class="menu-back-middle float-left display-block height-40px plain" id="lista_estoque">
-											<a href="/lista_estoque" title="Estoque" alt="Estoque">Estoque</a>
-										</li>
-                                        {% endif %}
-										
-                                        {% if user.is_anonymous %}
                                         <li class="menu-back-middle float-left display-block height-40px plain" id="addsolicita">
 											<a href="/add_solicitacao/" title="Gerar Nova Solicitação" alt="Gerar Nova Solicitação">Nova Solicitação</a>
 										</li>
-                                        {% endif %}
-
-										{% if user.is_authenticated %}
-                                        <li class="menu-back-middle float-left display-block height-40px plain" id="addsolicita">
-											<a href="/add_produto_estoque/" title="Adicionar Produto em Estoque" alt="Adicionar Produto em Estoque">Adicionar Produto</a>
-										</li>
-                                        {% endif %}
-
-                                        {% if user.is_authenticated %}
-										<li class="menu-back-middle float-left display-block height-40px plain" id="listsolicitacao">
-											<a href="/lista_solicitacoes/" title="Lista de Solicitações" alt="Lista de Solicitações">Lista de Solicitações</a>
-										</li>
-                                        {% endif %}
-										<li class="menu-back-middle float-left display-block height-40px plain" id="listastatus">
-											<a href="/lista_status_solicitacao/" title="Lista de Status das Solicitações" alt="Lista de Status das Solicitações">Status das Solicitações</a/>
-										</li>
-                                        {% if user.is_authenticated %}
-										<li class="menu-back-middle float-left display-block height-40px plain" id="logout">
-											<a href="/logout" title="Logout" alt="Logout">Logout</a>
-										</li>
+                                        
+                                        {% if user %}
+											<li class="menu-back-middle float-left display-block height-40px plain" id="lista_estoque">
+												<a href="/lista_estoque" title="Estoque" alt="Estoque">Estoque</a>
+											</li>
+											<li class="menu-back-middle float-left display-block height-40px plain" id="listsolicitacao">
+												<a href="/lista_solicitacoes/" title="Lista de Solicitações" alt="Lista de Solicitações">Lista de Solicitações</a>
+											</li>
+											<li class="menu-back-middle float-left display-block height-40px plain" id="logout">
+												<a href="/logout" title="Logout" alt="Logout">Logout</a>
+											</li>
                                         {% else %}
-										<li class="menu-back-middle float-left display-block height-40px plain" id="login">
-											<a href="/login" title="Login" alt="Login">Login</a>
-										</li>
+											<li class="menu-back-middle float-left display-block height-40px plain" id="login">
+												<a href="/login" title="Login" alt="Login">Login</a>
+											</li>
                                         {% endif %}
 									</ul>
 								</div>
@@ -96,11 +67,9 @@
 						<!-- CONTEUDO -->
 						<div class="row main-middle">
 							<div class="margin-tb10px">
-								<div id="portal-column-content">{{ user }}
+								<div id="portal-column-content">
 									<h1>{% block head %}{% endblock %}</h1>
-										{% block content %}{% endblock %}
-									
-									
+									{% block content %}{% endblock %}
 								</div>
 							</div>
 						</div>
@@ -116,49 +85,44 @@
 				<div class="back-main-footer float-left width-916px height-180px">
 					<!-- MENU FOOTER -->
 					<div class="cell width-3:4 position-0">
-						<!--<ul id="portal-globalnav-footer" class="clear-both float-left">
+						<ul id="portal-globalnav-footer" class="clear-both float-left">
 							<li class="display-inline">
 								<a href="/" title="Home" alt="Home" id="home" class="cookie">Home</a>
 							</li>
 							<li class="display-inline">
 								<a href="/add_solicitacao/" title="Gerar Nova Solicitação" alt="Gerar Nova Solicitação" id="addsolicita" class="cookie">GNS</a>
 							</li>
-							<li class="display-inline" >
-								<a href="/lista_solicitacoes/" title="Lista Solicitações" alt="Lista Solicitações" id="listsolicitacao" class="cookie">LS</a>
-							</li>
-							<li class="display-inline">
-								<a href="/lista_status_solicitacao/" title="Lista de Status das Solicitações" alt="Lista de Status das Solicitações" id="listastatus" class="cookie">LSS</a/>
-							</li>
-							<li class="display-inline">
-								<a href="/admin/" title="Area de Administração" alt="Area de Administração" id="admin" class="cookie">AA</a>
-							</li>
-							<li class="display-inline">
-								<a href="/login/" title="Login" alt="Login" id="login" class="cookie">Login</a>
-							</li>
-						</ul>-->
+							{% if user %}
+								<li class="display-inline">
+									<a href="/admin/" title="Area de Administração" alt="Area de Administração" id="admin" class="cookie" target="blank">AA</a>
+								</li>
+								<li class="display-inline">
+									<a href="/logout/" title="Logout" alt="Logout" id="logout" class="cookie">Sair</a>
+								</li>
+							{% else %}
+								<li class="display-inline">
+									<a href="/login/" title="Login" alt="Login" id="login" class="cookie">Login</a>
+								</li>
+							{% endif  %}
+						</ul>
 						<div class="clear-both"></div>
-						<h6 class="liberiun-copyright">Copyright Liberiun 2011 - Todos os Direitos Reservados</h6>
+						<h6 class="layout-copyright">Copyright 2018 - Todos os Direitos Reservados</h6>
 					</div>
 					<div class="cell width-1:3 position-2:3 align-right">
-						<h5 class="liberiun-technologies">Liberiun Technologies Sistema da Informa&ccedil;&atilde;o</h5>
-						<p class="liberiun-info-footer padding-top20px">
+						<h5 class="layout-technologies">Estoque e Technologies Sistema da Informa&ccedil;&atilde;o</h5>
+						<p class="layout-info-footer padding-top20px">
 							<span class="cidade">S&atilde;o Paulo </span>
 							<span class="ddd">+55 </span>
-							<span class="telefone">11 2325-2662</span>
+							<span class="telefone">11 2725-4808</span>
 						</p>
-						<p class="liberiun-info-footer">
-							<span class="cidade">Bras&iacute;lia </span>
-							<span class="ddd">+55 </span>
-							<span class="telefone">61 3468-2662</span>
-						</p>
-						<h4 class="liberiun-contato-footer-shadow">contato@liberiun.com</h4>
-						<h4 class="liberiun-contato-footer">contato@liberiun.com</h4>
+						<h4 class="layout-contato-footer-shadow">contato@layout.com</h4>
+						<h4 class="layout-contato-footer">contato@layout.com</h4>
 						<ul id="portal-siteactions-theme" class="clear-both float-right">
 							<li class="display-inline">
 								<a href="/" title="">Mapa do Site</a>
 							</li>
 							<li class="display-inline">
-								<a href="/" title="">Acessibilidade</a>
+								<a href="https://pt.wikipedia.org/wiki/Acessibilidade" title="">Acessibilidade</a>
 							</li>
 							<li class="display-inline">
 								<a href="/" title="">Contato</a>

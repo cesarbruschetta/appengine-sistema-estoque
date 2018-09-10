@@ -1,0 +1,57 @@
+{% extends "base_admin.html" %}
+{% block title %}Solicitações cadastrados{% endblock %}
+{% block head %}Solicitações cadastrados{% endblock %}
+{% block content %}
+	
+	<div class="animated fadeIn">
+        <div class="row">
+            <div class="col-md-12">
+	            <div class="card">
+	                <div class="card-header">
+	                    <strong class="card-title">Solicitações cadastrados</strong>
+	                </div>
+	                <div class="card-body">
+	                  <table id="bootstrap-data-table" class="table table-striped table-bordered">
+	                    <thead>
+	                      <tr>
+							<th>Nome</th>
+							<th>Usuario</th>
+							<th>Produto</th>
+							<th>Estoque</th>
+							<th>Quantidade</th>
+	                      </tr>
+	                    </thead>
+	                    <tbody>
+						{% for solicitacao in solicitacoes %}
+							<tr>
+								<td><a href="/admin/solicitacao?id={{ solicitacao.key }}">{{ solicitacao.nome }}</a></td>
+								<td>{{ solicitacao.usuario }}</td>
+								<td>{{ solicitacao.produto.nome }}</td>
+								<td>{{ solicitacao.estoque.nome }}</td>
+								<td>{{ solicitacao.quantidade }}</td>
+							</tr>
+						{% endfor %}
+						</tbody>
+					  </table>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+		
+{% endblock %}
+{% block extra_js %}
+
+    <script src="/static/assets/js/lib/data-table/datatables.min.js"></script>
+    <script src="/static/assets/js/lib/data-table/dataTables.bootstrap.min.js"></script>
+    <script src="/static/assets/js/lib/data-table/dataTables.buttons.min.js"></script>
+    <script src="/static/assets/js/lib/data-table/buttons.bootstrap.min.js"></script>
+    <script src="/static/assets/js/lib/data-table/jszip.min.js"></script>
+    <script src="/static/assets/js/lib/data-table/pdfmake.min.js"></script>
+    <script src="/static/assets/js/lib/data-table/vfs_fonts.js"></script>
+    <script src="/static/assets/js/lib/data-table/buttons.html5.min.js"></script>
+    <script src="/static/assets/js/lib/data-table/buttons.print.min.js"></script>
+    <script src="/static/assets/js/lib/data-table/buttons.colVis.min.js"></script>
+    <script src="/static/assets/js/lib/data-table/datatables-init.js"></script>
+
+{% endblock %}

@@ -21,7 +21,7 @@ class AdminHandler(webapp.RequestHandler):
             self.redirect(users.create_login_url(self.request.path))
             
         else:
-            utils.doRender(self,'admin.html',{'user':user} )
+            utils.doRender(self,'admin/admin.html',{'user':user} )
         
 class ProdutoHandler(webapp.RequestHandler):
     def get(self):
@@ -32,7 +32,7 @@ class ProdutoHandler(webapp.RequestHandler):
             
         else:
             produtos = Produto.all()
-            utils.doRender(self,'add_produtos.html',{'user':user, 'produtos':produtos} )        
+            utils.doRender(self,'admin/add_produtos.html',{'user':user, 'produtos':produtos} )        
 
     def post(self):
         #dbg()
@@ -43,9 +43,7 @@ class ProdutoHandler(webapp.RequestHandler):
             produto = Produto(codigo=cod_produto,nome=nome_produto)
             produto.put()
             
-            self.get()
-        else:    
-             self.redirect('/admin/add_produto')   
+        self.redirect('/admin/add_produto')   
 
 class EstoqueHandler(webapp.RequestHandler):
     def get(self):
@@ -56,7 +54,7 @@ class EstoqueHandler(webapp.RequestHandler):
             
         else:
             estoques = Estoque.all()
-            utils.doRender(self,'add_estoques.html',{'user':user, 'estoques':estoques} )        
+            utils.doRender(self,'admin/add_estoques.html',{'user':user, 'estoques':estoques} )        
 
     def post(self):
         #dbg()
@@ -67,10 +65,7 @@ class EstoqueHandler(webapp.RequestHandler):
             estoque = Estoque(codigo=cod_estoque,nome=nome_estoque)
             estoque.put()
             
-            self.get()
-        
-        else:    
-             self.redirect('/admin/add_estoque')
+        self.redirect('/admin/add_estoque')
             
 class QuantidadeProdutosHandler(webapp.RequestHandler):
     def get(self):
@@ -80,7 +75,7 @@ class QuantidadeProdutosHandler(webapp.RequestHandler):
             self.redirect(users.create_login_url(self.request.path))
         else:
             produtos_em_estoque = QuantidadeProduto().quantidade_estoque()
-            utils.doRender(self,'add_quantidade_produto.html',{'user':user,
+            utils.doRender(self,'admin/add_quantidade_produto.html',{'user':user,
                                                                'produtos_em_estoques':produtos_em_estoque,
                                                                'produtos':QuantidadeProduto().combo_produto(),
                                                                'estoques':QuantidadeProduto().combo_estoque()})        
@@ -101,14 +96,8 @@ class QuantidadeProdutosHandler(webapp.RequestHandler):
                                                        quantidade=int(quantidade),
                                                        flag_fluxo=True) 
                 add_quant_prod_est.put()
-              
-                self.get()
-            
-            else:    
-             self.redirect('/admin/add_quantidade')
-        
-        else:    
-             self.redirect('/admin/add_quantidade')
+                 
+        self.redirect('/admin/add_quantidade')
 
 
 class ListaSolicitacoesHandler(webapp.RequestHandler):
@@ -120,7 +109,7 @@ class ListaSolicitacoesHandler(webapp.RequestHandler):
             
         else:
             solicitacoes = SolicitaProduto.all().filter('status =',False)
-            utils.doRender(self,'lista_solicitacoes.html',{'user':user, 'solicitacoes':solicitacoes} )        
+            utils.doRender(self,'admin/lista_solicitacoes.html',{'user':user, 'solicitacoes':solicitacoes} )        
 
 class StatusSolicitacaoHandler(webapp.RequestHandler):
     def get(self):
@@ -136,7 +125,7 @@ class StatusSolicitacaoHandler(webapp.RequestHandler):
                 solicitacao = db.GqlQuery("SELECT * FROM SolicitaProduto WHERE __key__ = :1 ", db.Key(id))
                 
                 #solicitacao = SolicitaProduto.all().get('__key__ =',db.Key(id))   #   filter('key =', db.Key(id))
-                utils.doRender(self,'solicitacao.html',{'user':user, 'solicitacao':solicitacao.get()})      
+                utils.doRender(self,'admin/solicitacao.html',{'user':user, 'solicitacao':solicitacao.get()})      
 
             else:
                 self.redirect('/admin/lista_solicitacoes')
@@ -171,12 +160,12 @@ class StatusSolicitacaoHandler(webapp.RequestHandler):
   
 
 def main():
-    application = webapp.WSGIApplication([('/admin', AdminHandler),
-                                         ('/admin/add_produto', ProdutoHandler),
-                                         ('/admin/add_estoque', EstoqueHandler),
-                                         ('/admin/add_quantidade', QuantidadeProdutosHandler),
-                                         ('/admin/lista_solicitacoes', ListaSolicitacoesHandler),
-                                         ('/admin/solicitacao', StatusSolicitacaoHandler)], debug=True)   
+    application = webapp.WSGIApplication([(r'/admin/?', AdminHandler),
+                                         (r'/admin/add_produto/?', ProdutoHandler),
+                                         (r'/admin/add_estoque/?', EstoqueHandler),
+                                         (r'/admin/add_quantidade/?', QuantidadeProdutosHandler),
+                                         (r'/admin/lista_solicitacoes/?', ListaSolicitacoesHandler),
+                                         (r'/admin/solicitacao/?', StatusSolicitacaoHandler)], debug=True)   
     util.run_wsgi_app(application)
 
 

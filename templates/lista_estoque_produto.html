@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% block title %}Lista de Produtos em Estoque{% endblock %}
+{% block head %}Produtos em estoque{% endblock %}
+{% block content %}
+
+  <table>
+    <thead>
+      <tr>
+      	<th>Nome Produto</th>
+		<th>Estoque</th>
+		<th>Quantidade</th>
+      </tr>
+    </thead>
+    <tbody>
+	{% for produtos_em_estoque in produtos_em_estoques %}
+		<tr>
+			<td>{{ produtos_em_estoque.nome_produto }}</td>
+			<td>{{ produtos_em_estoque.estoque }}</td>
+			<td>{{ produtos_em_estoque.quantidade }}</td>
+		</tr>
+	{% endfor %}
+	</tbody>
+  </table>
+	
+{% endblock %}
+

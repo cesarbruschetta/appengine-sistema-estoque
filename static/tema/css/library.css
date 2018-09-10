@@ -84,10 +84,10 @@ body {
 /* BACKGROUNDS */
 /*
 .back-main { background: url('../images/bkg/main_rodape.png') repeat-x bottom; }
-.back-liberiun { background: #F2F2F2 url("../images/bkg/back_liberiun.jpg") repeat-x scroll left top; }
+.back-layout { background: #F2F2F2 url("../images/bkg/back_layout.jpg") repeat-x scroll left top; }
 */
-.back-main { background: #F2F2F2 url("../images/bkg/back_liberiun.jpg") repeat-x scroll left top; }
-.back-liberiun { background: url('../images/bkg/main_rodape.png') repeat-x bottom; }
+.back-main { background: #F2F2F2 url("../images/bkg/back_layout.jpg") repeat-x scroll left top; }
+.back-layout { background: url('../images/bkg/main_rodape.png') repeat-x bottom; }
 .main-top { background: url('../images/bkg/main_top.png') no-repeat center top; }
 .main-footer { background: url('../images/bkg/main_footer.png') no-repeat center top; }
 .main-middle { background: url('../images/bkg/main_middle.png') repeat-y center top; }

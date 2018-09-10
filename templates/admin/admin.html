@@ -1,0 +1,83 @@
+{% extends "base_admin.html" %}
+{% block title %}Bem Vindo ao Sistema {% endblock %}
+{% block head %}Bem Vindo ao Sistema{% endblock %}
+{% block content %}
+<div class="content mt-3">
+    <div class="animated fadeIn">
+        <div class="row">
+            <div class="col-lg-12">
+                <h2 class="pb-2 display-5">Cadastros</h2>
+            </div>
+            
+            <div class="col-lg-4 col-md-6">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="stat-widget-one">
+                            <div class="stat-icon dib"><i class="ti-rocket text-success border-success"></i></div>
+                            <div class="stat-content dib">
+                                <div class="stat-text">Produto</div>
+                                <div class="stat-digit">
+                                    <a href="/admin/add_produto" class="btn btn-link"><i class="fa fa-arrow-circle-right text-success"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-4 col-md-6">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="stat-widget-one">
+                            <div class="stat-icon dib"><i class="ti-truck text-primary border-primary"></i></div>
+                            <div class="stat-content dib">
+                                <div class="stat-text">Estoques</div>
+                                <div class="stat-digit">
+                                    <a href="/admin/add_estoque" class="btn btn-link"><i class="fa fa-arrow-circle-right"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-4 col-md-6">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="stat-widget-one">
+                            <div class="stat-icon dib"><i class="fa fa-table text-warning border-warning"></i></div>
+                            <div class="stat-content dib">
+                                <div class="stat-text">Produtos ao estoque</div>
+                                <div class="stat-digit">
+                                    <a href="/admin/add_quantidade" class="btn btn-link"><i class="fa fa-arrow-circle-right text-warning"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="col-lg-12">
+                <h2 class="pb-2 display-5">Solicitações</h2>
+            </div>
+            
+            <div class="col-lg-3 col-md-6">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="stat-widget-one">
+                            <div class="stat-icon dib"><i class="ti-check-box text-danger border-danger"></i></div>
+                            <div class="stat-content dib">
+                                <div class="stat-text">Pedidos</div>
+                                <div class="stat-digit">
+                                    <a href="/admin/lista_solicitacoes" class="btn btn-link"><i class="fa fa-arrow-circle-right text-danger"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+{% endblock %}

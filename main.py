@@ -19,11 +19,7 @@ def dbg():
 
 class MainHandler(webapp.RequestHandler):
     def get(self):
-        user = users.get_current_user()
-        D={}
-        if user:
-            D['user'] = user
-        utils.doRender(self,'main_page.html',D)
+        utils.doRender(self,'main_page.html',{})
        
 class Login(webapp.RequestHandler):
     def get(self):
@@ -52,7 +48,8 @@ class AddSolicitacaoHandler(webapp.RequestHandler):
             
                 add_solicitacao = SolicitaProduto(nome=nome,produto=db.Key(cod_produto),
                                                   estoque=db.Key(cod_estoque),quantidade=1,
-                                                  razao=razao, status=False) 
+                                                  razao=razao, status=False,
+                                                  usuario=users.get_current_user()) 
                 add_solicitacao.put()
               
                 self.redirect('/')
@@ -63,16 +60,24 @@ class AddSolicitacaoHandler(webapp.RequestHandler):
         else:    
              self.redirect('/admin/add_quantidade')
 
-
+class ListaQuantidadeEstoqueProdutosHandler(webapp.RequestHandler):
+    def get(self):
+        utils.doRender(self,'lista_estoque_produto.html',
+                       {'produtos_em_estoques':QuantidadeProduto().quantidade_estoque()},
+                       requered_aut=True)        
 
 def main():
     application = webapp.WSGIApplication([('/', MainHandler),
-                                          ('/add_solicitacao', AddSolicitacaoHandler),
-                                          ('/login', Login),
-                                          ('/login', Logout)],
+                                          (r'/add_solicitacao/?', AddSolicitacaoHandler),
+                                          (r'/lista_estoque/?', ListaQuantidadeEstoqueProdutosHandler),
+                                          (r'/login/?', Login),
+                                          (r'/logout/?', Logout)],
                                          debug=True)
     util.run_wsgi_app(application)
-
-
+    
+# /" title="Estoque"
+# /lista_solicitacoes/" title="Lista de Solicitações"
+# /lista_status_solicitacao/" title="Lista de Status das Solicitações"
+											
 if __name__ == '__main__':
     main()

@@ -1,6 +1,6 @@
-{% extends "base_admin.html" %}
-    {% block title %}Adicionar Produtos{% endblock %}
-    {% block head %}Adicionar Produtos{% endblock %}
+{% extends "base.html" %}
+    {% block title %}Adicionar Solicitação{% endblock %}
+    {% block head %}Adicionar Solicitação{% endblock %}
     {% block content %}
 		<p>Cadastrar nova Solicitacao</p>
 		<form action="/add_solicitacao" method="post">
@@ -35,7 +35,7 @@
 				</tr>
 				<tr>
 					<td><input type="reset" value="Limpar"/></td>
-					<td><input type="submit" value="Adicionar Produto"/></td>
+					<td><input type="submit" value="Adicionar Solicitação"/></td>
 				</tr>	
 			</table>
 		</form>
