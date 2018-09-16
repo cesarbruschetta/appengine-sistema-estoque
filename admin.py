@@ -108,7 +108,7 @@ class ListaSolicitacoesHandler(webapp.RequestHandler):
             self.redirect(users.create_login_url(self.request.path))
             
         else:
-            solicitacoes = SolicitaProduto.all().filter('status =',False)
+            solicitacoes = SolicitaProduto.all()
             utils.doRender(self,'admin/lista_solicitacoes.html',{'user':user, 'solicitacoes':solicitacoes} )        
 
 class StatusSolicitacaoHandler(webapp.RequestHandler):
@@ -152,7 +152,7 @@ class StatusSolicitacaoHandler(webapp.RequestHandler):
                 if status:
                     add_quant_prod_est = QuantidadeProduto(produto=solicitacao.produto.key(),
                                                            estoque=solicitacao.estoque.key(),
-                                                           quantidade=1,flag_fluxo=False) 
+                                                           quantidade=solicitacao.quantidade,flag_fluxo=False) 
                     add_quant_prod_est.put()
                 
                 

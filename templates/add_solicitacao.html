@@ -1,10 +1,10 @@
 {% extends "base.html" %}
     {% block title %}Adicionar Solicitação{% endblock %}
-    {% block head %}Adicionar Solicitação{% endblock %}
+    {% block head %}Cadastrar Nova Solicitacao{% endblock %}
     {% block content %}
-		<p>Cadastrar nova Solicitacao</p>
+
 		<form action="/add_solicitacao" method="post">
-			<table>
+			<table class="tabela">
 				<tr>
 					<td align="right">Nome:</td>
 					<td><input type='text' name='nome' size='64' /></td>

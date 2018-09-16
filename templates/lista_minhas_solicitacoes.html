@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% block title %}Lista das minhas solicitações{% endblock %}
+{% block head %}Minhas solicitações{% endblock %}
+{% block content %}
+
+<table class="tabela">
+    <thead>
+      <tr>
+    	<th>Nome</th>
+    	<th>Produto</th>
+    	<th>Estoque</th>
+    	<th>Quantidade</th>
+    	<th>Situação</th>
+      </tr>
+    </thead>
+    <tbody>
+    {% for solicitacao in solicitacoes %}
+    	<tr>
+    		<td><a href="?id={{ solicitacao.key }}">{{ solicitacao.nome }}</a></td>
+    		<td>{{ solicitacao.produto.nome }}</td>
+    		<td>{{ solicitacao.estoque.nome }}</td>
+    		<td>{{ solicitacao.quantidade }}</td>
+    		<td>{{ solicitacao.status }}</td>
+    	</tr>
+    {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

@@ -33,7 +33,7 @@ class AddSolicitacaoHandler(webapp.RequestHandler):
     def get(self):
         
        utils.doRender(self,'add_solicitacao.html',{'produtos':QuantidadeProduto().combo_produto(),
-                                                   'estoques':QuantidadeProduto().combo_estoque()})
+                                                   'estoques':QuantidadeProduto().combo_estoque()},requered_aut=True)
 
     def post(self):
         if self.request.POST.has_key('nome') and self.request.POST.has_key('produto') and \
@@ -66,18 +66,22 @@ class ListaQuantidadeEstoqueProdutosHandler(webapp.RequestHandler):
                        {'produtos_em_estoques':QuantidadeProduto().quantidade_estoque()},
                        requered_aut=True)        
 
+class ListaMinhasSolicitacaoHandler(webapp.RequestHandler):
+    def get(self):
+        user = users.get_current_user()
+        solicitacoes = db.GqlQuery("SELECT * FROM SolicitaProduto WHERE usuario = :1 ", user)
+        
+        utils.doRender(self,'lista_minhas_solicitacoes.html',{'solicitacoes':solicitacoes}, requered_aut=True)      
+
 def main():
     application = webapp.WSGIApplication([('/', MainHandler),
                                           (r'/add_solicitacao/?', AddSolicitacaoHandler),
                                           (r'/lista_estoque/?', ListaQuantidadeEstoqueProdutosHandler),
+                                          (r'/lista_solicitacoes/?', ListaMinhasSolicitacaoHandler),
                                           (r'/login/?', Login),
                                           (r'/logout/?', Logout)],
                                          debug=True)
     util.run_wsgi_app(application)
     
-# /" title="Estoque"
-# /lista_solicitacoes/" title="Lista de Solicitações"
-# /lista_status_solicitacao/" title="Lista de Status das Solicitações"
-											
 if __name__ == '__main__':
     main()
